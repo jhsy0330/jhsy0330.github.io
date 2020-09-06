@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Git多账户：ssh管理多个秘钥 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="git管理多账户秘钥，sshconfig的配置问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git多账户：ssh管理多个秘钥">
+<meta property="og:url" content="http://example.com/2019/12/26/Git%E5%A4%9A%E8%B4%A6%E6%88%B7%EF%BC%9Assh%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AA%E7%A7%98%E9%92%A5/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="git管理多账户秘钥，sshconfig的配置问题">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-26T02:49:01.000Z">
+<meta property="article:modified_time" content="2019-12-26T03:31:32.411Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="ssh">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Git多账户：ssh管理多个秘钥" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/26/Git%E5%A4%9A%E8%B4%A6%E6%88%B7%EF%BC%9Assh%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AA%E7%A7%98%E9%92%A5/" class="article-date">
+  <time datetime="2019-12-26T02:49:01.000Z" itemprop="datePublished">2019-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git多账户：ssh管理多个秘钥
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在我的主机上有两个账户，一个是用于ssh的账户而另一个是用于git的账户。出于安全考虑在主账户中设置了秘钥指纹密码，而不想每次deploy的时候都重复输入密码。所以需要管理多个ssh秘钥。</p>
+<h3 id="ssh-config文件"><a href="#ssh-config文件" class="headerlink" title="ssh config文件"></a>ssh config文件</h3><p>在.ssh文件夹下默认是没有config文件的，这里可以手动创建一个config文件，并输入以下内容</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Host jhsyi77.<span class="keyword">com</span></span><br><span class="line">  HostName jhsyi77.<span class="keyword">com</span></span><br><span class="line">  User jhsy</span><br><span class="line">  IdentityFile ~/.ssh/jhsy</span><br><span class="line">  User git</span><br><span class="line">  IdentityFile ~/.ssh/git</span><br></pre></td></tr></table></figure>
+
+<p>这样做的目的是在同一个主机上分别使用不同的账户登录时使用不同的秘钥进行验证，省去了选择秘钥的麻烦。</p>
+<p>缺点是进行ssh登录时需要输入完整的hostname。</p>
+<p>但是还不仅仅满足于此</p>
+<p>了解到config文件之后还想更多的了解config文件的作用。</p>
+<h3 id="config文件的结构"><a href="#config文件的结构" class="headerlink" title="config文件的结构"></a>config文件的结构</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Host firsthost</span><br><span class="line">    SSH_OPTIONS_1 custom_value</span><br><span class="line">    SSH_OPTIONS_2 custom_value</span><br><span class="line">    SSH_OPTIONS_3 custom_value</span><br><span class="line"></span><br><span class="line">Host secondhost</span><br><span class="line">    ANOTHER_OPTION custom_value</span><br><span class="line"></span><br><span class="line">Host *host</span><br><span class="line">    ANOTHER_OPTION custom_value</span><br><span class="line"></span><br><span class="line">Host *</span><br><span class="line">    CHANGE_DEFAULT custom_value</span><br></pre></td></tr></table></figure>
+
+<p>可以相对应设置每一个Host的登录选项</p>
+<p>可以使用man ssh_config查看相关选项</p>
+<p>例如我有两个服务器分别对应家里和公司的，可以这样设置</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Host home</span><br><span class="line">    HostName example.<span class="keyword">com</span></span><br><span class="line">    User apollo</span><br><span class="line">    Port <span class="number">4567</span></span><br><span class="line"></span><br><span class="line">Host work</span><br><span class="line">    HostName company.<span class="keyword">com</span></span><br><span class="line">    User apollo</span><br></pre></td></tr></table></figure>
+
+<p>还可以使用通配符</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Host home</span><br><span class="line">    HostName example.<span class="keyword">com</span></span><br><span class="line">    Port <span class="number">4567</span></span><br><span class="line"></span><br><span class="line">Host work</span><br><span class="line">    HostName company.<span class="keyword">com</span></span><br><span class="line"></span><br><span class="line">Host *</span><br><span class="line">    User apollo</span><br></pre></td></tr></table></figure>
+
+<p>直接可以使用ssh home或者ssh work 登录到相对应的主机</p>
+<p>host可以自行设置</p>
+<p>原文链接:<a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client#common-ssh-configuration-options">https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client#common-ssh-configuration-options</a></p>
+<h3 id="探索"><a href="#探索" class="headerlink" title="探索"></a>探索</h3><p>以上基本可以解决大多数关于ssh多账户秘钥的问题。但是还有一些问题没有实现。</p>
+<p>本着精益求精的精神，暂时还没有找到一种很简洁的修改config的方法。</p>
+<p>比如说git使用ssh登录时不能使用host需要用hostname登录，但是在config文件中设置的是host相关选项，还需要添加一个host直接指向hostname才可以让git分配秘钥。暂时还没有理解透彻这个操作，希望有高人指出</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/26/Git%E5%A4%9A%E8%B4%A6%E6%88%B7%EF%BC%9Assh%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AA%E7%A7%98%E9%92%A5/" data-id="ckeqs996f00053udi3t131ila" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/12/27/post/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          回顾2019：探索
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/24/%E5%83%8FOSX%E4%B8%80%E6%A0%B7%EF%BC%81%E5%AE%9E%E7%8E%B0windows%E4%B8%8BAlt%E5%92%8CCtrl%E5%AF%B9%E6%8D%A2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">像OSX一样！实现windows下Alt和Ctrl对换</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" rel="tag">碎碎念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E7%A8%8B/" rel="tag">编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/" rel="tag">编辑器</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/ssh/" style="font-size: 10px;">ssh</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 10px;">总结</a> <a href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" style="font-size: 20px;">碎碎念</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">编程</a> <a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/" style="font-size: 10px;">编辑器</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/27/post/">回顾2019：探索</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/26/Git%E5%A4%9A%E8%B4%A6%E6%88%B7%EF%BC%9Assh%E7%AE%A1%E7%90%86%E5%A4%9A%E4%B8%AA%E7%A7%98%E9%92%A5/">Git多账户：ssh管理多个秘钥</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/24/%E5%83%8FOSX%E4%B8%80%E6%A0%B7%EF%BC%81%E5%AE%9E%E7%8E%B0windows%E4%B8%8BAlt%E5%92%8CCtrl%E5%AF%B9%E6%8D%A2/">像OSX一样！实现windows下Alt和Ctrl对换</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/23/%E4%BD%BF%E7%94%A8https-nginx%E5%AE%89%E8%A3%85SSL%E8%AF%81%E4%B9%A6/">使用https:nginx安装SSL证书</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
