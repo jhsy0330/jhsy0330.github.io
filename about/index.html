@@ -13,11 +13,11 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="#2f4154">
+  <meta name="theme-color" content="#30a9de">
   <meta name="description" content="">
   <meta name="author" content="镜花水月">
   <meta name="keywords" content="">
-  <title>关于我 - 原来是镜花水月</title>
+  <title>关于 - 原来是镜花水月</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -132,6 +132,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
@@ -174,57 +186,95 @@
         <div class="py-5" id="board"
           >
           
+            <div class="about-avatar">
+              <img src="/img/avatar.png" srcset="/img/loading.gif"
+                   class="img-fluid" alt="avatar">
+            </div>
+          
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="page-content">
-  <div id="echarts6200" style="width: 85%;height: 400px;margin: 0 auto"></div>
-<script src="https://cdn.bootcss.com/echarts/3.8.0/echarts.common.min.js"></script>
-<script type="text/javascript">
-        // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('echarts6200'));
-        // 指定图表的配置项和数据
-        var option = {
-    series: [
-        {
-            name: "我的生活",
-            type: "pie",
-            radius: "60%",
-            center: ["50%", "60%"],
-            data: [
-                {
-                    value: 40,
-                    name: "编程"
-                },
-                {
-                    value: 20,
-                    name: "游戏"
-                },
-                {
-                    value: 20,
-                    name: "吉他"
-                },
-                {
-                    value: 10,
-                    name: "英语"
-                },
-                {
-                    value: 10,
-                    name: "阅读"
-                }
-            ]
-        }
-    ],
-    animation: true,
-    animationDuration: 2000,
-    animationEasing: "CircularInOut",
-    color: ["rgb(170, 86, 255)", "rgb(135, 206, 250)", "rgb(229, 170, 114)", "rgb(51, 204, 191)", "#6495ed", "#ff69b4", "#ba55d3", "#cd5c5c", "#ffa500", "#40e0d0", "#1e90ff", "#ff6347", "#7b68ee", "#00fa9a", "#ffd700", "#6699FF", "#ff6666", "#3cb371", "#b8860b", "#30e0e0"]
-}
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-</script>
+<div class="text-center">
+  <div class="about-info">
+    <div class="about-name">小镜</div>
+    <div class="about-intro">指弹吉他 / Linux / 考研 / 数据分析</div>
+    <div class="about-icons">
+      
+        
+        
+        
+        <a target="_blank" rel="noopener" href="https://github.com/jhsy0330" class="
+           hint--bottom hint--rounded"
+           aria-label=GitHub
+        >
+          <i class="iconfont icon-github-fill" aria-hidden="true"></i>
+          
+        </a>
+      
+        
+        
+        
+        <a target="_blank" rel="noopener" href="https://space.bilibili.com/429614622" class="
+           hint--bottom hint--rounded"
+           aria-label=哔哩哔哩
+        >
+          <i class="iconfont icon-bilibili" aria-hidden="true"></i>
+          
+        </a>
+      
+        
+        
+        
+        <a target="_blank" rel="noopener" href="http://wpa.qq.com/msgrd?v=3&amp;uin=799334213&amp;site=qq&amp;menu=yes" class="
+           hint--bottom hint--rounded"
+           aria-label=QQ
+        >
+          <i class="iconfont icon-qq-fill" aria-hidden="true"></i>
+          
+        </a>
+      
+        
+        
+        
+        <a href="javascript:;" class="qr-trigger
+           "
+           
+        >
+          <i class="iconfont icon-wechat-fill" aria-hidden="true"></i>
+          
+            <img class="qr-img" src="/img/wechat_QR.png" srcset="/img/loading.gif" alt="qrcode" />
+          
+        </a>
+      
+        
+        
+        
+        <a href="/jhsy0330@outlook.com" class="
+           hint--bottom hint--rounded"
+           aria-label=邮件
+        >
+          <i class="iconfont icon-mail" aria-hidden="true"></i>
+          
+        </a>
+      
+        
+        
+        
+        <a target="_blank" rel="noopener" href="https://space.bilibili.com/429614622" class="
+           hint--bottom hint--rounded"
+           aria-label=tg
+        >
+          <i class="iconfont icon_telegram" aria-hidden="true"></i>
+          
+        </a>
+      
+    </div>
+  </div>
+</div>
+<div class="mt-5 markdown-body">
+  
 </div>
 
               </div>
@@ -320,7 +370,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "关于我&nbsp;",
+        "关于&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
