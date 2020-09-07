@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="镜花水月">
   <meta name="keywords" content="">
-  <title>我为什么使用markdown进行写作 - 原来是镜花水月</title>
+  <title>使用https:nginx安装SSL证书 - 原来是镜花水月</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('/img/ssl-https-lamp-w458.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -177,8 +177,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2019-12-13 22:37" pubdate>
-        2019年12月13日 晚上
+      <time datetime="2019-12-23 16:59" pubdate>
+        2019年12月23日 下午
       </time>
     </span>
   
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      619 字
+      448 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      5
        分钟
     </span>
   
@@ -229,19 +229,35 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">我为什么使用markdown进行写作</h1>
+            <h1 style="display: none">使用https:nginx安装SSL证书</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>有知识的输入，必然有知识的输出</p>
-<h3 id="写作是我们知识输出的一种方式"><a href="#写作是我们知识输出的一种方式" class="headerlink" title="写作是我们知识输出的一种方式"></a>写作是我们知识输出的一种方式</h3><p>过去往往会使用word进行文字创作，随着程序员的不断壮大。新兴的技术不断出现，MarkDown也是一种“标记语言”，类似于HTML。对于普通的文字创作者来说，MarkDown的优势也越来越优于传统编辑器。</p>
-<p>使用传统的编辑器，往往会伴随着大量的鼠标操作。曾经第一次使用thinkpad的时候，我不禁赞叹手不离开键盘的这种操作方式，渐渐地觉得手频繁离开键盘操作鼠标是一种较为繁琐的操作，相比手部不需要离开键盘就可以执行各种各样的操作的方式。显然键盘操作更加高效。</p>
-<p>但是word拥有很强大的排版功能，更改字号更改字体添加各种设计功能。当然，功能强大并不一定是一个好处。功能越多，我们的注意力也便分散。我们会纠结字体大小到底应该是多少，行间距多少比较合适？</p>
-<p>而Markdown的出现，我们不再去纠结这些问题。Markdown让我们回归初衷，把精力放在内容本身而不是文章样式。</p>
-<h3 id="Markdown的目的更加简洁明了，易读易写。"><a href="#Markdown的目的更加简洁明了，易读易写。" class="headerlink" title="Markdown的目的更加简洁明了，易读易写。"></a>Markdown的目的更加简洁明了，易读易写。</h3><p>Markdown相对于别的标记语言，学习成本更低，操作更方便。仅仅几分钟就可以学会Markdown语法。易学易用，高效写作</p>
-<p>在程序员的圈子内，Markdown几乎成为一种必备技能，Markdown可以很容易转换为其他形式的文本，越来越多的写作平台也开始支持Markdown语法。</p>
-<p>我推荐更多的人去尝试Markdown，去把更多的精力放在创作内容</p>
-<h3 id="Markdown-编辑器推荐——Typora"><a href="#Markdown-编辑器推荐——Typora" class="headerlink" title="Markdown 编辑器推荐——Typora"></a>Markdown 编辑器推荐——Typora</h3><p>我要介绍的是 Typora 这款多平台的编辑器，支持 OS X， Windows 和 Linux 三个平台。它是那种你第一眼看上去，你就会爱上它的软件。软件界面相当漂亮。</p>
-<p>Typora 抛弃了传统的交互模式，它只使用一个窗口，却能优雅地实现同时将代码编辑与预览结合起来！从而为用户带来更加流畅直观的，所见即所得的 Markdown 写作体验。对于刚接触 MarkDown 的新手来说，实时预览的功能真的太重要了。</p>
+              <p>Nginx 安装SSL证书</p>
+<p>因为http每次访问，浏览器都会提示不安全。比较烦人，也不想让别人访问我的博客的时候都提示不安全，所以这次记录一下Nginx安装SSL的过程</p>
+<h2 id="购买证书"><a href="#购买证书" class="headerlink" title="购买证书"></a>购买证书</h2><p>直接在阿里云上购买的CA证书，个人免费一年。我就不详细介绍了，在阿里云官网上都能找到~</p>
+<h2 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h2><p>因为我使用的是nginx搭建的网站，所以这里只说nginx的方法，别的技术可以在相关文档上搜索。<br>首先下载证书，包含两个文件一个是domain.pem另一个是domain.key。这两个都需要上传至服务器。<br>修改/etc/nginx/nginx.conf文件<br>添加如下内容，如果已经有的只做修改就可以了</p>
+<pre><code class="hljs vim">listen    443  ssl;
+server_name  domain.com;
+ssl_certificate domin.pem;
+ssl_certificate_key domin.key;
+ssl_session_timeout 5m;
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+ssl_prefer_server_ciphers on;</code></pre>
+
+<p>这里吧监听端口改为443 并且加上ssl，不加ssl可能无法启动nginx。</p>
+<p>domain.com修改为自己的域名</p>
+<p>domain.pem和domain.key改为绝对路径，比如说pem放在我的个人文件夹下，就是/home/jhsy/domain.pem</p>
+<p>ssl_ciphers这个改为证书提供的算法</p>
+<p>再写一个80端口重定向到443</p>
+<pre><code class="hljs vim">server &#123;
+    listen 80;
+    server_name  domin.com;
+    rewrite ^(.*)$ https://$&#123;server_name&#125;$1 permanent; 
+&#125;</code></pre>
+
+<h2 id="语法检查"><a href="#语法检查" class="headerlink" title="语法检查"></a>语法检查</h2><p>使用nginx -t进行语法检查，我经常在写配置的时候粗心少写或者多写一些东西导致无法正常启动，所以最好在配置完成之后进行语法检查，免得出现一些小错误焦头烂额也找不到答案</p>
+<h2 id="重启nginx"><a href="#重启nginx" class="headerlink" title="重启nginx"></a>重启nginx</h2><p>最后的最后，重启Nginx然后试着用https访问就可以啦~</p>
 
             </div>
             <hr>
@@ -251,7 +267,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
+                      <a class="hover-with-bg" href="/categories/linux/">linux</a>
                     
                   </div>
                 
@@ -259,7 +275,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/">编辑器</a>
+                      <a class="hover-with-bg" href="/tags/nginx/">nginx</a>
                     
                   </div>
                 
@@ -272,9 +288,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/46587.html">
+                      <a href="/post/18219.html">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">关于java值传递和引用传递之间的困扰</span>
+                        <span class="hidden-mobile">像OSX一样！实现windows下Alt和Ctrl对换</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -282,8 +298,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/13799.html">
-                        <span class="hidden-mobile">为什么我要用HEXO</span>
+                      <a href="/post/46587.html">
+                        <span class="hidden-mobile">关于java值传递和引用传递之间的困扰</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -426,7 +442,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "我为什么使用markdown进行写作&nbsp;",
+        "使用https:nginx安装SSL证书&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

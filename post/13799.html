@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="镜花水月">
   <meta name="keywords" content="">
-  <title>Git多账户：ssh管理多个秘钥 - 原来是镜花水月</title>
+  <title>为什么我要用HEXO - 原来是镜花水月</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://s2.ax1x.com/2019/12/26/lk5SFH.jpg') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -177,8 +177,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2019-12-26 10:49" pubdate>
-        2019年12月26日 上午
+      <time datetime="2019-12-12 21:06" pubdate>
+        2019年12月12日 晚上
       </time>
     </span>
   
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      528 字
+      739 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      7
        分钟
     </span>
   
@@ -229,65 +229,16 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Git多账户：ssh管理多个秘钥</h1>
+            <h1 style="display: none">为什么我要用HEXO</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>在我的主机上有两个账户，一个是用于ssh的账户而另一个是用于git的账户。出于安全考虑在主账户中设置了秘钥指纹密码，而不想每次deploy的时候都重复输入密码。所以需要管理多个ssh秘钥。</p>
-<h3 id="ssh-config文件"><a href="#ssh-config文件" class="headerlink" title="ssh config文件"></a>ssh config文件</h3><p>在.ssh文件夹下默认是没有config文件的，这里可以手动创建一个config文件，并输入以下内容</p>
-<pre><code class="hljs vim">Host jhsyi77.<span class="hljs-keyword">com</span>
-  HostName jhsyi77.<span class="hljs-keyword">com</span>
-  User jhsy
-  IdentityFile ~/.ssh/jhsy
-  User git
-  IdentityFile ~/.ssh/git</code></pre>
-
-<p>这样做的目的是在同一个主机上分别使用不同的账户登录时使用不同的秘钥进行验证，省去了选择秘钥的麻烦。</p>
-<p>缺点是进行ssh登录时需要输入完整的hostname。</p>
-<p>但是还不仅仅满足于此</p>
-<p>了解到config文件之后还想更多的了解config文件的作用。</p>
-<h3 id="config文件的结构"><a href="#config文件的结构" class="headerlink" title="config文件的结构"></a>config文件的结构</h3><pre><code class="hljs vim">Host firsthost
-    SSH_OPTIONS_1 custom_value
-    SSH_OPTIONS_2 custom_value
-    SSH_OPTIONS_3 custom_value
-
-Host secondhost
-    ANOTHER_OPTION custom_value
-
-Host *host
-    ANOTHER_OPTION custom_value
-
-Host *
-    CHANGE_DEFAULT custom_value</code></pre>
-
-<p>可以相对应设置每一个Host的登录选项</p>
-<p>可以使用man ssh_config查看相关选项</p>
-<p>例如我有两个服务器分别对应家里和公司的，可以这样设置</p>
-<pre><code class="hljs vim">Host home
-    HostName example.<span class="hljs-keyword">com</span>
-    User apollo
-    Port <span class="hljs-number">4567</span>
-
-Host work
-    HostName company.<span class="hljs-keyword">com</span>
-    User apollo</code></pre>
-
-<p>还可以使用通配符</p>
-<pre><code class="hljs vim">Host home
-    HostName example.<span class="hljs-keyword">com</span>
-    Port <span class="hljs-number">4567</span>
-
-Host work
-    HostName company.<span class="hljs-keyword">com</span>
-
-Host *
-    User apollo</code></pre>
-
-<p>直接可以使用ssh home或者ssh work 登录到相对应的主机</p>
-<p>host可以自行设置</p>
-<p>原文链接:<a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client#common-ssh-configuration-options">https://www.digitalocean.com/community/tutorials/how-to-configure-custom-connection-options-for-your-ssh-client#common-ssh-configuration-options</a></p>
-<h3 id="探索"><a href="#探索" class="headerlink" title="探索"></a>探索</h3><p>以上基本可以解决大多数关于ssh多账户秘钥的问题。但是还有一些问题没有实现。</p>
-<p>本着精益求精的精神，暂时还没有找到一种很简洁的修改config的方法。</p>
-<p>比如说git使用ssh登录时不能使用host需要用hostname登录，但是在config文件中设置的是host相关选项，还需要添加一个host直接指向hostname才可以让git分配秘钥。暂时还没有理解透彻这个操作，希望有高人指出</p>
+              <p>我上次使用独立博客大概是四五年前了</p>
+<p>我记得我准备上高中的时候，在本地的动漫群里里认识了一个朋友，当时他购买了一个VPS。然后就给我展示了他自己搭建的机场和博客还有别的一些服务。</p>
+<p>后来在网上找了好多教程，一开始用的是LAMP + Worepress搭建的个人博客，现在记录已经没有了。断断续续高中也搭建了不少东西，之前老喜欢在服务器上做一些好玩的静态页面挂上去分享。但是由于别的原因，开始贪玩了orz，博客也是没有坚持写下去，VPS后来到期后也没有再续费了，第一次的独立博客就不了了之了。</p>
+<p>四年后，也就是现在吧，游戏也玩腻，也知道博客对于自己的学习也是挺重要的，然后又重新租了VPS，搭建了Nginx+Hexo</p>
+<p>由于长时间没有使用相关的技术，我的知识以及忘记得差不多了。相当于现在从0开始学习了。本来还想继续使用wordpress搭建，但是发现wp现在已经开始收费而且也不会手动搭lamp了。我比较喜欢手动搭建，不太喜欢一键脚本什么的，像是黑匣子操作。之前就觉得wordpress过于臃肿，我偏向于多简单的结构，一个程序只做一个功能，wp包含太多东西了，不符合我的个人习惯。看到很多人都使用的是hexo搭建的个人博客，便去尝试了</p>
+<p>已经习惯wp的前后台操作，加上最近的MarkDown语法，接受了很多主流的技术。回想一下四年前，还是用后台写博文，想比现在hexo的操作，觉得hexo更便于部署服务器同时也更方便管理。核心文件在本地就可以部署服务端了，比较方便数据转移。</p>
+<p>搭建hexo也是踩了不少的坑，相比起来学到的东西也是很多。凭借曾经遗留的记忆操作linux已经不太现实了，现在还是得边操作边查询相关文档。前几天一次nginx部署的时候root目录不生效的问题，然后发现include已经包含了配置文件，然后就天真的把所有的include全都注释掉了，hexo部署到服务器之后怎么都加载不出css和js。把hexo文档反反复复看了好几遍还是解决不了我的问题，各个交流群也是寻找不到答案。然而，就是因为我天真的把include注释掉了Orz。然后就改变了我的思维方式，用模块化配置。把不同的配置用include包含进去，而不在主配置目录下写配置。有点蠢orz</p>
 
             </div>
             <hr>
@@ -297,7 +248,7 @@ Host *
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/linux/">linux</a>
+                      <a class="hover-with-bg" href="/categories/%E7%94%9F%E6%B4%BB/">生活</a>
                     
                   </div>
                 
@@ -305,11 +256,7 @@ Host *
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
-                    
-                      <a class="hover-with-bg" href="/tags/ssh/">ssh</a>
-                    
-                      <a class="hover-with-bg" href="/tags/git/">git</a>
+                      <a class="hover-with-bg" href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/">碎碎念</a>
                     
                   </div>
                 
@@ -322,9 +269,9 @@ Host *
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/935af188.html">
+                      <a href="/post/6671.html">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Arch下配置vscode使用C/C++</span>
+                        <span class="hidden-mobile">我为什么使用markdown进行写作</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -332,8 +279,8 @@ Host *
                   <article class="post-next col-6">
                     
                     
-                      <a href="/18219.html">
-                        <span class="hidden-mobile">像OSX一样！实现windows下Alt和Ctrl对换</span>
+                      <a href="/post/47523.html">
+                        <span class="hidden-mobile">记录一次Hexo搭建过程踩过的一些坑</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -476,7 +423,7 @@ Host *
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Git多账户：ssh管理多个秘钥&nbsp;",
+        "为什么我要用HEXO&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

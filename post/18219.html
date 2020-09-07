@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="镜花水月">
   <meta name="keywords" content="">
-  <title>使用https:nginx安装SSL证书 - 原来是镜花水月</title>
+  <title>像OSX一样！实现windows下Alt和Ctrl对换 - 原来是镜花水月</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/ssl-https-lamp-w458.png') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -177,8 +177,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2019-12-23 16:59" pubdate>
-        2019年12月23日 下午
+      <time datetime="2019-12-24 09:33" pubdate>
+        2019年12月24日 上午
       </time>
     </span>
   
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      448 字
+      248 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      3
        分钟
     </span>
   
@@ -229,55 +229,33 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">使用https:nginx安装SSL证书</h1>
+            <h1 style="display: none">像OSX一样！实现windows下Alt和Ctrl对换</h1>
             
             <div class="markdown-body" id="post-body">
-              <p>Nginx 安装SSL证书</p>
-<p>因为http每次访问，浏览器都会提示不安全。比较烦人，也不想让别人访问我的博客的时候都提示不安全，所以这次记录一下Nginx安装SSL的过程</p>
-<h2 id="购买证书"><a href="#购买证书" class="headerlink" title="购买证书"></a>购买证书</h2><p>直接在阿里云上购买的CA证书，个人免费一年。我就不详细介绍了，在阿里云官网上都能找到~</p>
-<h2 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h2><p>因为我使用的是nginx搭建的网站，所以这里只说nginx的方法，别的技术可以在相关文档上搜索。<br>首先下载证书，包含两个文件一个是domain.pem另一个是domain.key。这两个都需要上传至服务器。<br>修改/etc/nginx/nginx.conf文件<br>添加如下内容，如果已经有的只做修改就可以了</p>
-<pre><code class="hljs vim">listen    443  ssl;
-server_name  domain.com;
-ssl_certificate domin.pem;
-ssl_certificate_key domin.key;
-ssl_session_timeout 5m;
-ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
-ssl_prefer_server_ciphers on;</code></pre>
+              <p>上一次的开发机是macbook，习惯了command键，再回到windows下变得很不习惯。长时间用小拇指按ctrl，觉得我的小拇指要变形，便想办法将左下角的alt和ctrl键调换了一下~</p>
+<p>通过修改注册表的方式，更改键位</p>
+<pre><code class="hljs reg">Windows Registry Editor Version 5.00
+ 
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+&quot;Scancode Map&quot;&#x3D;hex:00,00,00,00,00,00,00,00,03,00,00,00,38,00,1D,00,1D,00,38,00,00,00,00,00</code></pre>
 
-<p>这里吧监听端口改为443 并且加上ssl，不加ssl可能无法启动nginx。</p>
-<p>domain.com修改为自己的域名</p>
-<p>domain.pem和domain.key改为绝对路径，比如说pem放在我的个人文件夹下，就是/home/jhsy/domain.pem</p>
-<p>ssl_ciphers这个改为证书提供的算法</p>
-<p>再写一个80端口重定向到443</p>
-<pre><code class="hljs vim">server &#123;
-    listen 80;
-    server_name  domin.com;
-    rewrite ^(.*)$ https://$&#123;server_name&#125;$1 permanent; 
-&#125;</code></pre>
+<p>修改后重启即可食用~</p>
+<p>如果需要改回来只需要再次修改</p>
+<pre><code class="hljs reg">Windows Registry Editor Version 5.00
+ 
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Keyboard Layout]
+&quot;Scancode Map&quot;&#x3D;hex:00,00,00,00,00,00,00,00,03,00,00,00,38,00,38,00,1D,00,1D,00,00,00,00,00</code></pre>
 
-<h2 id="语法检查"><a href="#语法检查" class="headerlink" title="语法检查"></a>语法检查</h2><p>使用nginx -t进行语法检查，我经常在写配置的时候粗心少写或者多写一些东西导致无法正常启动，所以最好在配置完成之后进行语法检查，免得出现一些小错误焦头烂额也找不到答案</p>
-<h2 id="重启nginx"><a href="#重启nginx" class="headerlink" title="重启nginx"></a>重启nginx</h2><p>最后的最后，重启Nginx然后试着用https访问就可以啦~</p>
+<p>将以上代码使用文本工具写入并改后缀为reg，双击即可食用~</p>
+<p>如果不会操作可以直接使用我制作好的注册表文件修改</p>
+<p>百度网盘：</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1KaP7EwGVo1E5EjU-GHy3gA">https://pan.baidu.com/s/1KaP7EwGVo1E5EjU-GHy3gA</a><br>提取码：mi1r</p>
 
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/linux/">linux</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/nginx/">nginx</a>
-                    
-                  </div>
                 
               </div>
               
@@ -288,9 +266,9 @@ ssl_prefer_server_ciphers on;</code></pre>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/18219.html">
+                      <a href="/post/26684.html">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">像OSX一样！实现windows下Alt和Ctrl对换</span>
+                        <span class="hidden-mobile">Git多账户：ssh管理多个秘钥</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -298,8 +276,8 @@ ssl_prefer_server_ciphers on;</code></pre>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/46587.html">
-                        <span class="hidden-mobile">关于java值传递和引用传递之间的困扰</span>
+                      <a href="/post/37793.html">
+                        <span class="hidden-mobile">使用https:nginx安装SSL证书</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -442,7 +420,7 @@ ssl_prefer_server_ciphers on;</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "使用https:nginx安装SSL证书&nbsp;",
+        "像OSX一样！实现windows下Alt和Ctrl对换&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
