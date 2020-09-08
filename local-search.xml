@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>正确食用方法：email客户端添加outlook账户</title>
+    <link href="/post/d6f4d0d7.html"/>
+    <url>/post/d6f4d0d7.html</url>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚好今天报名计算机等级考试，然后我忘记了我账号的密码。正在要找回账户，但是每次登录网页客户端都略显繁琐，因为我目前在使用KDE桌面环境，刚好有邮箱客户端Kmail，于是我就简单设置了一下，后来发现事情并没有这么简单，反复报错代码16，服务器不支持加密协议。事情好像没那么简单，于是查阅微软官方文档找到解决方法，这里记录下来</p><h1 id="开启Outlook的POP服务"><a href="#开启Outlook的POP服务" class="headerlink" title="开启Outlook的POP服务"></a>开启Outlook的POP服务</h1><p>网页登录outlook之后点击小齿轮进入设置，在更多设置里面 </p><p>邮件 &gt; 同步电子邮件 &gt; POP选项 &gt; 允许设备和应用使用POP</p><p>然后就会出现POP IMAP SMTP设置的相关服务器和端口，这里我选择POP</p><p>服务器名称: outlook.office365.com<br>端口: 995<br>加密方法: TLS</p><p>然后直接在邮箱客户端设置中填入相对应的参数</p><p>现在就可以愉快的使用邮件客户端查看邮件了</p><h1 id="邮件客户端"><a href="#邮件客户端" class="headerlink" title="邮件客户端"></a>邮件客户端</h1><h2 id="thunderbird"><a href="#thunderbird" class="headerlink" title="thunderbird"></a>thunderbird</h2><p>Arch下直接pacman安装</p><p>首次打开输入outlook账号密码后开始食用</p><h2 id="Kmail"><a href="#Kmail" class="headerlink" title="Kmail"></a>Kmail</h2><p>暂时还没找到怎么食用outlook，</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>E-mail</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>E-mail</tag>
+      
+      <tag>Microsoft</tag>
+      
+      <tag>踩坑</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>安装Arch linux 这有一篇简洁的guide</title>
     <link href="/post/f3b641b6.html"/>
     <url>/post/f3b641b6.html</url>

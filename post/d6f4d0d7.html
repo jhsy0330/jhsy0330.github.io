@@ -17,10 +17,23 @@
   <meta name="description" content="">
   <meta name="author" content="镜花水月">
   <meta name="keywords" content="">
-  <title>标签 - 原来是镜花水月</title>
+  <title>正确食用方法：email客户端添加outlook账户 - 原来是镜花水月</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +56,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -159,6 +172,43 @@
             </span>
 
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-08 11:26" pubdate>
+        2020年9月8日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      317 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      3
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
           </div>
 
           
@@ -169,24 +219,98 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center tagcloud">
-  <a href="/tags/Arch/" style="font-size: 45px; color: #779bd3">Arch</a> <a href="/tags/C-C/" style="font-size: 30px; color: #bbe">C/C++</a> <a href="/tags/E-mail/" style="font-size: 30px; color: #bbe">E-mail</a> <a href="/tags/Microsoft/" style="font-size: 30px; color: #bbe">Microsoft</a> <a href="/tags/git/" style="font-size: 30px; color: #bbe">git</a> <a href="/tags/hexo/" style="font-size: 30px; color: #bbe">hexo</a> <a href="/tags/java/" style="font-size: 30px; color: #bbe">java</a> <a href="/tags/linux/" style="font-size: 60px; color: #337ab7">linux</a> <a href="/tags/nginx/" style="font-size: 30px; color: #bbe">nginx</a> <a href="/tags/ssh/" style="font-size: 30px; color: #bbe">ssh</a> <a href="/tags/vscode/" style="font-size: 30px; color: #bbe">vscode</a> <a href="/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/" style="font-size: 30px; color: #bbe">碎碎念</a> <a href="/tags/%E7%B3%BB%E7%BB%9F/" style="font-size: 30px; color: #bbe">系统</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" style="font-size: 45px; color: #779bd3">编程</a> <a href="/tags/%E7%BC%96%E8%BE%91%E5%99%A8/" style="font-size: 30px; color: #bbe">编辑器</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 30px; color: #bbe">踩坑</a>
-</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">正确食用方法：email客户端添加outlook账户</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>刚好今天报名计算机等级考试，然后我忘记了我账号的密码。正在要找回账户，但是每次登录网页客户端都略显繁琐，因为我目前在使用KDE桌面环境，刚好有邮箱客户端Kmail，于是我就简单设置了一下，后来发现事情并没有这么简单，反复报错代码16，服务器不支持加密协议。事情好像没那么简单，于是查阅微软官方文档找到解决方法，这里记录下来</p>
+<h1 id="开启Outlook的POP服务"><a href="#开启Outlook的POP服务" class="headerlink" title="开启Outlook的POP服务"></a>开启Outlook的POP服务</h1><p>网页登录outlook之后点击小齿轮进入设置，在更多设置里面 </p>
+<p>邮件 &gt; 同步电子邮件 &gt; POP选项 &gt; 允许设备和应用使用POP</p>
+<p>然后就会出现POP IMAP SMTP设置的相关服务器和端口，这里我选择POP</p>
+<p>服务器名称: outlook.office365.com<br>端口: 995<br>加密方法: TLS</p>
+<p>然后直接在邮箱客户端设置中填入相对应的参数</p>
+<p>现在就可以愉快的使用邮件客户端查看邮件了</p>
+<h1 id="邮件客户端"><a href="#邮件客户端" class="headerlink" title="邮件客户端"></a>邮件客户端</h1><h2 id="thunderbird"><a href="#thunderbird" class="headerlink" title="thunderbird"></a>thunderbird</h2><p>Arch下直接pacman安装</p>
+<p>首次打开输入outlook账号密码后开始食用</p>
+<h2 id="Kmail"><a href="#Kmail" class="headerlink" title="Kmail"></a>Kmail</h2><p>暂时还没找到怎么食用outlook，</p>
 
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/E-mail/">E-mail</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/E-mail/">E-mail</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Microsoft/">Microsoft</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%B8%A9%E5%9D%91/">踩坑</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/post/f3b641b6.html">
+                        <span class="hidden-mobile">安装Arch linux 这有一篇简洁的guide</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -268,6 +392,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -275,7 +424,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签&nbsp;",
+        "正确食用方法：email客户端添加outlook账户&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -290,6 +439,21 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
 
 
   <script  src="/js/local-search.js" ></script>
@@ -303,6 +467,20 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
 
 
 
